@@ -1824,6 +1824,8 @@ with pkgs;
     openssl = openssl_1_1;
   };
 
+  git-sim = callPackage ../applications/version-management/git-sim { };
+
   git-sizer = callPackage ../applications/version-management/git-sizer { };
 
   git-standup = callPackage ../applications/version-management/git-standup { };
