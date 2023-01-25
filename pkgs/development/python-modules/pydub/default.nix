@@ -2,7 +2,9 @@
 , stdenv
 , buildPythonPackage
 , fetchFromGitHub
-
+, fetchpatch
+, substituteAll
+, pytestCheckHook
 # tests
 , ffmpeg-full
 , python
@@ -21,6 +23,19 @@ buildPythonPackage rec {
     sha256 = "0xskllq66wqndjfmvp58k26cv3w480sqsil6ifwp4gghir7hqc8m";
   };
 
+  patches = [
+    # Fix codecs parsing with newer ffmpeg
+    # https://github.com/jiaaro/pydub/pull/713
+    (fetchpatch {
+      url = "https://github.com/jiaaro/pydub/commit/12fac9434b48a6ca5af6ae6db155816450facdc8.patch";
+      hash = "sha256-JJtnvlEL7pWxl5ICMiI3o4rW/1nbGD6mQMNCJ5XUYME=";
+    })
+    (substituteAll {
+      src = ./use-absolute-paths.diff;
+      ffmpeg = ffmpeg-full;
+    })
+  ];
+
   pythonImportsCheck = [
     "pydub"
     "pydub.audio_segment"
@@ -28,16 +43,17 @@ buildPythonPackage rec {
   ];
 
   nativeCheckInputs = [
-    ffmpeg-full
+    pytestCheckHook
   ];
 
-  checkPhase = ''
-    ${python.interpreter} test/test.py
-  '';
+  pytestFlagsArray = [
+    "test/test.py"
+  ];
 
   meta = with lib; {
     description = "Manipulate audio with a simple and easy high level interface";
-    homepage = "http://pydub.com";
+    homepage = "https://pydub.com/";
+    changelog = "https://github.com/jiaaro/pydub/releases/tag/v${version}";
     license = licenses.mit;
     maintainers = with maintainers; [ hexa ];
   };

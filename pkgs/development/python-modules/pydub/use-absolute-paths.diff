@@ -1,0 +1,67 @@
+diff --git a/pydub/utils.py b/pydub/utils.py
+index 2694f90..95119fd 100644
+--- a/pydub/utils.py
++++ b/pydub/utils.py
+@@ -153,7 +153,7 @@ def which(program):
+     if os.name == "nt" and not program.endswith(".exe"):
+         program += ".exe"
+ 
+-    envdir_list = [os.curdir] + os.environ["PATH"].split(os.pathsep)
++    envdir_list = [os.curdir, "@ffmpeg@/bin"] + os.environ["PATH"].split(os.pathsep)
+ 
+     for envdir in envdir_list:
+         program_path = os.path.join(envdir, program)
+@@ -165,10 +165,13 @@ def get_encoder_name():
+     """
+     Return enconder default application for system, either avconv or ffmpeg
+     """
+-    if which("avconv"):
+-        return "avconv"
+-    elif which("ffmpeg"):
+-        return "ffmpeg"
++    avconv = which("avconv")
++    if avconv:
++        return avconv
++
++    ffmpeg = which("ffmpeg")
++    if ffmpeg:
++        return ffmpeg
+     else:
+         # should raise exception
+         warn("Couldn't find ffmpeg or avconv - defaulting to ffmpeg, but may not work", RuntimeWarning)
+@@ -179,10 +182,13 @@ def get_player_name():
+     """
+     Return enconder default application for system, either avconv or ffmpeg
+     """
+-    if which("avplay"):
+-        return "avplay"
+-    elif which("ffplay"):
+-        return "ffplay"
++    avplay = which("avplay")
++    if avplay:
++        return avplay
++
++    ffplay = which("ffplay")
++    if ffplay:
++        return ffplay
+     else:
+         # should raise exception
+         warn("Couldn't find ffplay or avplay - defaulting to ffplay, but may not work", RuntimeWarning)
+@@ -193,10 +199,13 @@ def get_prober_name():
+     """
+     Return probe application, either avconv or ffmpeg
+     """
+-    if which("avprobe"):
+-        return "avprobe"
+-    elif which("ffprobe"):
+-        return "ffprobe"
++    avprobe = which("avprobe")
++    if avprobe:
++        return avprobe
++
++    ffprobe = which("ffprobe")
++    if ffprobe:
++        return ffprobe
+     else:
+         # should raise exception
+         warn("Couldn't find ffprobe or avprobe - defaulting to ffprobe, but may not work", RuntimeWarning)
