@@ -4056,6 +4056,8 @@ with pkgs;
 
   cassowary = callPackage ../tools/networking/cassowary { };
 
+  cassowary-linux = callPackage ../applications/virtualization/cassowary-linux { };
+
   croc = callPackage ../tools/networking/croc { };
 
   cbftp = callPackage ../tools/networking/cbftp { };

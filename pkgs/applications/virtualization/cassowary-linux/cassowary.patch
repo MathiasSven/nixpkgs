@@ -1,0 +1,62 @@
+diff --git a/app-linux/src/cassowary/gui/components/desktopitemdialog.py b/app-linux/src/cassowary/gui/components/desktopitemdialog.py
+index 72c8528..baa667b 100644
+--- a/app-linux/src/cassowary/gui/components/desktopitemdialog.py
++++ b/app-linux/src/cassowary/gui/components/desktopitemdialog.py
+@@ -29,7 +29,7 @@ class DesktopItemDialog(QDialog):
+         self.inp_icon.setText(icon_path)
+         self.inp_description.setText(description + " (cassowary remote application)")
+         self.inp_comment.setText("'{}' version '{}'".format(name, version))
+-        self.inp_command.setText("python3 -m cassowary -c guest-run -- '{}' %u".format(
++        self.inp_command.setText("cassowary -c guest-run -- '{}' %u".format(
+             path.replace("\\", "\\\\").replace("'", "").replace("\"", ""))
+         )
+         # Not using pixmap for now, just use css border-image
+diff --git a/app-linux/src/cassowary/gui/components/main_ui.py b/app-linux/src/cassowary/gui/components/main_ui.py
+index 1899dee..b68bddb 100644
+--- a/app-linux/src/cassowary/gui/components/main_ui.py
++++ b/app-linux/src/cassowary/gui/components/main_ui.py
+@@ -69,7 +69,7 @@ class MainWindow(QMainWindow):
+         desktop_item = """[Desktop Entry]
+ Comment=Cassowary Background Service
+ Encoding=UTF-8
+-Exec=python -m cassowary -bc
++Exec=cassowary -bc
+ GenericName=cassowary-service
+ Icon={icon}
+ Name[en_US]=Cassowary Background Service
+@@ -93,7 +93,7 @@ Version=1.0
+         desktop_item = """[Desktop Entry]
+ Comment=Controls settings for cassowary
+ Encoding=UTF-8
+-Exec=python -m cassowary -a
++Exec=cassowary -a
+ GenericName=cassowary
+ Icon={icon}
+ Name[en_US]=Cassowary Linux
+diff --git a/app-linux/src/cassowary/gui/qtui_files/main.ui b/app-linux/src/cassowary/gui/qtui_files/main.ui
+index 4f1541b..be5fd15 100644
+--- a/app-linux/src/cassowary/gui/qtui_files/main.ui
++++ b/app-linux/src/cassowary/gui/qtui_files/main.ui
+@@ -956,6 +956,9 @@ App like Windows 10's Photoviewer will generate a lot of glitches.</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="btn_createdesktop">
++           <property name="enabled">
++            <bool>false</bool>
++           </property>
+            <property name="geometry">
+             <rect>
+              <x>390</x>
+@@ -964,6 +967,12 @@ App like Windows 10's Photoviewer will generate a lot of glitches.</string>
+              <height>41</height>
+             </rect>
+            </property>
++           <property name="toolTip">
++            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enabled by default on Nix&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
++           </property>
++           <property name="toolTipDuration">
++            <number>-1</number>
++           </property>
+            <property name="text">
+             <string>Create</string>
+            </property>
