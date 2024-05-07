@@ -292,7 +292,7 @@ let
 
   execCommand = "${cfg.package}/bin/nginx -c '${configPath}'";
 
-  vhosts = concatStringsSep "\n" (mapAttrsToList (vhostName: vhost:
+  vhosts = concatStringsSep "\n" (mapAttrsToList (_: vhost:
     let
         onlySSL = vhost.onlySSL || vhost.enableSSL;
         hasSSL = onlySSL || vhost.addSSL || vhost.forceSSL;
@@ -352,7 +352,7 @@ let
 
         # The acme-challenge location doesn't need to be added if we are not using any automated
         # certificate provisioning and can also be omitted when we use a certificate obtained via a DNS-01 challenge
-        acmeName = if vhost.useACMEHost != null then vhost.useACMEHost else vhostName;
+        acmeName = if vhost.useACMEHost != null then vhost.useACMEHost else vhost.serverName;
         acmeLocation = optionalString ((vhost.enableACME || vhost.useACMEHost != null) && config.security.acme.certs.${acmeName}.dnsProvider == null)
           # Rule for legitimate ACME Challenge requests (like /.well-known/acme-challenge/xxxxxxxxx)
           # We use ^~ here, so that we don't check any regexes (which could
@@ -411,7 +411,7 @@ let
             ssl_conf_command Options KTLS;
           ''}
 
-          ${mkBasicAuth vhostName vhost}
+          ${mkBasicAuth vhost.serverName vhost}
 
           ${optionalString (vhost.root != null) "root ${vhost.root};"}
 
