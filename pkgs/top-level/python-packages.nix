@@ -5067,6 +5067,8 @@ self: super: with self; {
 
   git-revise = callPackage ../development/python-modules/git-revise { };
 
+  git-sim = callPackage ../development/python-modules/git-sim { };
+
   git-sweep = callPackage ../development/python-modules/git-sweep { };
 
   git-url-parse = callPackage ../development/python-modules/git-url-parse { };
