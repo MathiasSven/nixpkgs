@@ -16,20 +16,20 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "1dzvgrk5vqncvwi1dn7kk5gzfjcr58jmqb6cyqcspwj6mr6zp7sw";
+      sha256 = "13ijspr857x710rfanmvv81dw7qxiygg552v5phmx0sh8ddzpw64";
       type = "gem";
     };
-    version = "1.2.10";
+    version = "1.2.12";
   };
   cgi = {
     groups = [ "default" ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "1rj7agrnd1a4282vg13qkpwky0379svdb2z2lc0wl8588q6ikjx3";
+      sha256 = "1njrjznc2j5xqqw71sp9130b9hyv59h2gfrf6yaf4in1n9dzd6gy";
       type = "gem";
     };
-    version = "0.4.2";
+    version = "0.5.0";
   };
   colsole = {
     groups = [ "default" ];
@@ -50,10 +50,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "1j3kpgmcvvs257m2zqhc3jlyrflhphcmy19lwgamv9p6xg100ak1";
+      sha256 = "0129alz54h2vy7vd19i5664sasdbvrl4zgj70hl5j4rpvckr5lf8";
       type = "gem";
     };
-    version = "0.7.0";
+    version = "0.7.1";
   };
   docopt_ng = {
     groups = [ "default" ];
@@ -114,10 +114,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "05s008w9vy7is3njblmavrbdzyrwwc1fsziffdr58w9pwqj8sqfx";
+      sha256 = "00q2zznygpbls8asz5knjvvj2brr3ghmqxgr83xnrdj4rk3xwvhr";
       type = "gem";
     };
-    version = "1.6.6";
+    version = "1.7.0";
   };
   lp = {
     groups = [ "default" ];
@@ -158,10 +158,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "05xqijcf80sza5pnlp1c8whdaay8x5dc13214ngh790zrizgp8q9";
+      sha256 = "1h6gazp5837xbz1aqvq9x0a5ffpw32nhvknn931a4074k6i04wvd";
       type = "gem";
     };
-    version = "0.6.1";
+    version = "0.6.2";
   };
   pastel = {
     dependencies = [ "tty-color" ];
@@ -199,10 +199,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "1pchwrkr0994v7mh054lcp0na3bk3mj2sk0dc33bn6bhxrnirj1a";
+      sha256 = "18v8if3jix029rr3j8iwisv73facw223353n0h7avl39ibxk6hh3";
       type = "gem";
     };
-    version = "4.5.1";
+    version = "4.5.2";
   };
   strings = {
     dependencies = [
